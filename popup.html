@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./vc-toggle-switch.css">
+
+    <style>
+      body {
+        width: 430px;
+        font-size: 0.8em;
+      }
+      .container {
+        margin: 5px;
+      }
+      .level.nav-header {
+        margin: 0 0 15px 0;
+        background: #202020;
+        padding: 5px 10px;
+      }
+      .nav-header-subtitle {
+        color: white;
+      }
+      .field.nav-header-switch {
+        margin: 5px -5px 0px 0px;
+      }
+      .table td {
+        vertical-align: middle;
+      }
+      .rule-type {
+        width: 100px;
+      }
+      .rule-text {
+        width: 150px;
+      }
+      .rule-action {
+        width: 55px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="level is-mobile nav-header">
+      <div class="level-left">
+        <div class="level-item">
+          <p class="is-size-6 nav-header-subtitle">YouTube Live Chat Blocker</p>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <div class="field nav-header-switch" style="--vc-width:55px;--vc-on-color:hsl(217, 71%, 53%);">
+            <div class="vc-toggle-container">
+              <label class="vc-switch">
+                <input type="checkbox" class="vc-switch-input"/>
+                <span class="vc-switch-label" data-on="ON" data-off="OFF"></span>
+                <span class="vc-handle"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="field has-addons">
+        <p class="control">
+          <span class="select is-small">
+            <select class="input-rule-type">
+              <option value="contains" selected>Contains</option>
+              <option value="equals">Equals</option>
+              <option value="regexp">Regular expression</option>
+            </select>
+          </span>
+        </p>
+        <p class="control is-expanded">
+          <input class="input input-rule-text is-small" type="text" placeholder="Text" autofocus>
+        </p>
+        <p class="control">
+          <button class="button is-success is-small" id="addBtn">
+            <span class="icon">
+              <i class="fas fa-circle-plus"></i>
+            </span>
+            <span class="has-text-weight-semibold">Add Rule</span>
+          </button>
+        </p>
+      </div>
+      
+      <table class="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <th scope="col" class="rule-type">Type</th>
+            <th scope="col" class="rule-text">Text</th>
+            <th scope="col" class="rule-action" align="center"></th>
+          </tr>
+        </thead>
+        <tbody id="rulesContainer">
+          <tr class="no-item-row">
+            <td colspan="3" align="center">no item</td>
+          </tr>
+          <!-- rule-row template -->
+          <tr id="ruleTemplate" class="rule-row" style="display: none;">
+            <td class="rule-type"></td>
+            <td class="rule-text"></td>
+            <td class="rule-action" align="center">
+              <button class="button is-rounded is-small is-danger is-outlined delete-btn">
+                <span class="icon">
+                  <i class="fas fa-trash"></i>
+                </span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
