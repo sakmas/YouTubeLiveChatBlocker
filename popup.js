@@ -8,13 +8,14 @@ const saveRules = () => {
     return {
       id: Number(row.dataset.id),
       type: row.querySelector(".rule-type").dataset.type,
-      text: row.querySelector(".rule-text").textContent
+      text: row.querySelector(".rule-text").textContent,
+      active: row.querySelector(".rule-active-checkbox").checked
     }
   });
   chrome.storage.local.set({ rules: rules });
 };
 
-const createRuleRow = (id, type, word) => {
+const createRuleRow = (id, type, word, active = true) => {
   const row = ruleTemplate.cloneNode(true);
 
   const typeContent = {
@@ -28,6 +29,13 @@ const createRuleRow = (id, type, word) => {
   row.querySelector(".rule-type").textContent = typeContent;
   row.querySelector(".rule-type").dataset.type = type;
   row.querySelector(".rule-text").textContent = word;
+
+  const activeCheckbox = row.querySelector(".rule-active-checkbox");
+  activeCheckbox.checked = active;
+  activeCheckbox.addEventListener("change", () => {
+    saveRules();
+  });
+
   row.style.display = "table-row";
 
   const deleteBtn = row.querySelector(".delete-btn");
@@ -54,7 +62,7 @@ const addRule = () => {
   }
 
   const id = (new Date()).getTime();
-  createRuleRow(id, inputType.value, inputText.value);
+  createRuleRow(id, inputType.value, inputText.value, true);
   saveRules();
 
   inputText.classList.remove("is-danger");
@@ -91,7 +99,7 @@ chrome.storage.local.get("power", result => {
 });
 
 chrome.storage.local.get("rules", result => {
-  if (result.rules.length !== 0) {
-    result.rules.sort((a, b) => a.id - b.id).forEach((rule) => createRuleRow(rule.id, rule.type, rule.text));
+  if (result.rules && result.rules.length !== 0) {
+    result.rules.sort((a, b) => a.id - b.id).forEach((rule) => createRuleRow(rule.id, rule.type, rule.text, rule.active !== false));
   }
 });

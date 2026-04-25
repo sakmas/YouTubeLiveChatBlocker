@@ -17,6 +17,7 @@ const filter = nodes => {
     const message = ((node.querySelector("#message") || []).textContent || "");
 
     const mached = rules.some(word => {
+      if (word.active === false) return false;
       switch (word.type) {
         case "contains":
           return message.includes(word.text);

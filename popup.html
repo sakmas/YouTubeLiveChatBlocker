@@ -31,7 +31,10 @@
         width: 100px;
       }
       .rule-text {
-        width: 150px;
+        width: 130px;
+      }
+      .rule-active {
+        width: 60px;
       }
       .rule-action {
         width: 55px;
@@ -95,17 +98,29 @@
           <tr>
             <th scope="col" class="rule-type">Type</th>
             <th scope="col" class="rule-text">Text</th>
+            <th scope="col" class="rule-active" align="center">State</th>
             <th scope="col" class="rule-action" align="center"></th>
           </tr>
         </thead>
         <tbody id="rulesContainer">
           <tr class="no-item-row">
-            <td colspan="3" align="center">no item</td>
+            <td colspan="4" align="center">no item</td>
           </tr>
           <!-- rule-row template -->
           <tr id="ruleTemplate" class="rule-row" style="display: none;">
             <td class="rule-type"></td>
-            <td class="rule-text"></td>
+            <td class="rule-text" style="word-break: break-all;"></td>
+            <td class="rule-active" align="center">
+              <div class="field" style="--vc-width:45px;--vc-on-color:hsl(141, 53%, 53%); margin-bottom: 0;">
+                <div class="vc-toggle-container">
+                  <label class="vc-switch">
+                    <input type="checkbox" class="vc-switch-input rule-active-checkbox"/>
+                    <span class="vc-switch-label" data-on="" data-off=""></span>
+                    <span class="vc-handle"></span>
+                  </label>
+                </div>
+              </div>
+            </td>
             <td class="rule-action" align="center">
               <button class="button is-rounded is-small is-danger is-outlined delete-btn">
                 <span class="icon">

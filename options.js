@@ -48,7 +48,8 @@ fileInput.addEventListener("change", event => {
         const isValid = data.rules.every(rule => 
           typeof rule.id === "number" && 
           ["contains", "equals", "regexp"].includes(rule.type) && 
-          typeof rule.text === "string"
+          typeof rule.text === "string" &&
+          (rule.active === undefined || typeof rule.active === "boolean")
         );
         
         if (isValid) {
