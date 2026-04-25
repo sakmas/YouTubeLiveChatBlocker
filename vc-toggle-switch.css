@@ -83,7 +83,9 @@
 
 .vc-switch-input {
   position: absolute;
-  transform: translate3d(5px, 5px, 0);
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .vc-switch-label {

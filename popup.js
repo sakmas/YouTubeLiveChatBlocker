@@ -29,10 +29,21 @@ const createRuleRow = (id, type, word, active = true) => {
   row.querySelector(".rule-type").textContent = typeContent;
   row.querySelector(".rule-type").dataset.type = type;
   row.querySelector(".rule-text").textContent = word;
-
   const activeCheckbox = row.querySelector(".rule-active-checkbox");
   activeCheckbox.checked = active;
+
+  const updateStateUI = () => {
+    if (activeCheckbox.checked) {
+      row.style.opacity = "1";
+    } else {
+      row.style.opacity = "0.5";
+    }
+  };
+
+  updateStateUI();
+
   activeCheckbox.addEventListener("change", () => {
+    updateStateUI();
     saveRules();
   });
 
