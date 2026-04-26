@@ -1,3 +1,11 @@
+const localizeHtmlPage = () => {
+  document.title = chrome.i18n.getMessage("optionsPageTitle") || "Options - YouTube Live Chat Blocker";
+  document.querySelectorAll('[data-i18n]').forEach(elem => {
+    elem.textContent = chrome.i18n.getMessage(elem.getAttribute('data-i18n'));
+  });
+};
+localizeHtmlPage();
+
 const exportBtn = document.getElementById("exportBtn");
 const importBtn = document.getElementById("importBtn");
 const fileInput = document.getElementById("fileInput");
@@ -27,7 +35,7 @@ exportBtn.addEventListener("click", () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
-    showMessage("Rules exported successfully!");
+    showMessage(chrome.i18n.getMessage("msgExportSuccess"));
   });
 });
 
@@ -54,17 +62,17 @@ fileInput.addEventListener("change", event => {
         
         if (isValid) {
           chrome.storage.local.set({ rules: data.rules }, () => {
-            showMessage("Rules imported successfully!");
+            showMessage(chrome.i18n.getMessage("msgImportSuccess"));
             fileInput.value = ""; // Reset input
           });
         } else {
-          showMessage("Invalid rule format in the JSON file.", false);
+          showMessage(chrome.i18n.getMessage("msgInvalidFormat"), false);
         }
       } else {
-        showMessage("Invalid JSON structure. 'rules' array is missing.", false);
+        showMessage(chrome.i18n.getMessage("msgInvalidStructure"), false);
       }
     } catch (err) {
-      showMessage("Failed to parse JSON file.", false);
+      showMessage(chrome.i18n.getMessage("msgParseError"), false);
     }
   };
   reader.readAsText(file);

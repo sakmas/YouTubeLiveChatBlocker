@@ -1,3 +1,16 @@
+const localizeHtmlPage = () => {
+  document.querySelectorAll('[data-i18n]').forEach(elem => {
+    elem.textContent = chrome.i18n.getMessage(elem.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(elem => {
+    elem.placeholder = chrome.i18n.getMessage(elem.getAttribute('data-i18n-placeholder'));
+  });
+  document.querySelectorAll('[data-i18n-title]').forEach(elem => {
+    elem.title = chrome.i18n.getMessage(elem.getAttribute('data-i18n-title'));
+  });
+};
+localizeHtmlPage();
+
 const rulesContainer = document.querySelector("#rulesContainer");
 const ruleTemplate = document.querySelector("#ruleTemplate");
 const noRuleRow = rulesContainer.querySelector(".no-item-row");
@@ -19,9 +32,9 @@ const createRuleRow = (id, type, word, active = true) => {
   const row = ruleTemplate.cloneNode(true);
 
   const typeContent = {
-    "contains": "Contains",
-    "equals": "Equals",
-    "regexp": "Regular expression"
+    "contains": chrome.i18n.getMessage("ruleTypeContains"),
+    "equals": chrome.i18n.getMessage("ruleTypeEquals"),
+    "regexp": chrome.i18n.getMessage("ruleTypeRegexp")
   }[type];
 
   row.id = "";

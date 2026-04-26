@@ -58,12 +58,12 @@
   <nav class="level is-mobile nav-header">
     <div class="level-left">
       <div class="level-item">
-        <p class="is-size-6 nav-header-subtitle">YouTube Live Chat Blocker</p>
+        <p class="is-size-6 nav-header-subtitle" data-i18n="extensionName">YouTube Live Chat Blocker</p>
       </div>
     </div>
     <div class="level-right">
       <div class="level-item">
-        <a href="options.html" target="_blank" style="color: white; margin-right: 15px;" title="Options">
+        <a href="options.html" target="_blank" style="color: white; margin-right: 15px;" title="Options" data-i18n-title="optionsTitle">
           <i class="fas fa-cog is-size-5"></i>
         </a>
       </div>
@@ -87,21 +87,21 @@
       <p class="control">
         <span class="select is-small">
           <select class="input-rule-type">
-            <option value="contains" selected>Contains</option>
-            <option value="equals">Equals</option>
-            <option value="regexp">Regular expression</option>
+            <option value="contains" selected data-i18n="ruleTypeContains">Contains</option>
+            <option value="equals" data-i18n="ruleTypeEquals">Equals</option>
+            <option value="regexp" data-i18n="ruleTypeRegexp">Regular expression</option>
           </select>
         </span>
       </p>
       <p class="control is-expanded">
-        <input class="input input-rule-text is-small" type="text" placeholder="Text" autofocus>
+        <input class="input input-rule-text is-small" type="text" placeholder="Text" autofocus data-i18n-placeholder="ruleTextPlaceholder">
       </p>
       <p class="control">
         <button class="button is-success is-small" id="addBtn">
           <span class="icon">
             <i class="fas fa-circle-plus"></i>
           </span>
-          <span class="has-text-weight-semibold">Add Rule</span>
+          <span class="has-text-weight-semibold" data-i18n="addRuleButton">Add Rule</span>
         </button>
       </p>
     </div>
@@ -110,14 +110,14 @@
       <thead>
         <tr>
           <th scope="col" class="rule-state"></th>
-          <th scope="col" class="rule-type">Type</th>
-          <th scope="col" class="rule-text">Text</th>
+          <th scope="col" class="rule-type" data-i18n="columnType">Type</th>
+          <th scope="col" class="rule-text" data-i18n="columnText">Text</th>
           <th scope="col" class="rule-action" align="right"></th>
         </tr>
       </thead>
       <tbody id="rulesContainer">
         <tr class="no-item-row">
-          <td colspan="4" align="center">no item</td>
+          <td colspan="4" align="center" data-i18n="noItemText">no item</td>
         </tr>
         <!-- rule-row template -->
         <tr id="ruleTemplate" class="rule-row" style="display: none;">
@@ -137,7 +137,7 @@
           <td class="rule-action" align="right">
             <div class="buttons is-right" style="flex-wrap: nowrap; margin-bottom: 0;">
               <button class="button is-ghost has-text-danger delete-btn" style="padding: 0 8px;"
-                title="Delete">
+                title="Delete" data-i18n-title="deleteTitle">
                 <span class="icon">
                   <i class="fas fa-trash"></i>
                 </span>
