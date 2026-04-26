@@ -37,6 +37,7 @@
       <h1 class="title is-4"><i class="fas fa-cog"></i> <span data-i18n="optionsHeader">YouTube Live Chat Blocker Options</span></h1>
       
       <div class="content">
+        <h2 class="title is-5"><i class="fas fa-exchange-alt"></i> <span data-i18n="importExportHeader">Import / Export Rules</span></h2>
         <p data-i18n="optionsDescription">You can export your current rule list as a JSON file, or import an existing JSON file to restore or migrate your rules.</p>
         
         <div class="action-buttons">
@@ -57,6 +58,59 @@
         </div>
 
         <div id="message" class="notification is-hidden"></div>
+      </div>
+
+      <div class="content" style="margin-top: 40px;">
+        <h2 class="title is-5"><i class="fas fa-question-circle"></i> <span data-i18n="helpHeader">Help & Usage</span></h2>
+        
+        <h3 class="title is-6" data-i18n="helpHowToUseTitle">How to use</h3>
+        <ul>
+          <li data-i18n="helpHowToUse1">Click the extension icon to open the popup window.</li>
+          <li data-i18n="helpHowToUse2">Add rules to block chat messages. Messages matching active rules will be hidden.</li>
+          <li data-i18n="helpHowToUse3">You can toggle individual rules or turn off the blocker completely using the top switch.</li>
+        </ul>
+
+        <h3 class="title is-6" data-i18n="helpRegexTitle" style="margin-top: 20px;">Regular Expression Examples</h3>
+        <p data-i18n="helpRegexDesc">If you choose "Regular expression" as the rule type, you can use patterns to block messages. Here are some useful examples:</p>
+        
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-narrow is-fullwidth" style="font-size: 0.9em;">
+            <thead>
+              <tr>
+                <th data-i18n="helpRegexTablePattern">Pattern</th>
+                <th data-i18n="helpRegexTableMeaning">Meaning</th>
+                <th data-i18n="helpRegexTableExample">Example Matches</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>word$</code></td>
+                <td data-i18n="helpRegexEndsWith">Matches messages ending with 'word'</td>
+                <td>hello word, this is a word</td>
+              </tr>
+              <tr>
+                <td><code>^word</code></td>
+                <td data-i18n="helpRegexStartsWith">Matches messages starting with 'word'</td>
+                <td>word is good, word</td>
+              </tr>
+              <tr>
+                <td><code data-i18n="helpRegexOneCharPattern">^a$</code></td>
+                <td data-i18n="helpRegexOneChar">Exactly the specific character 'a'</td>
+                <td data-i18n="helpRegexOneCharExample">a</td>
+              </tr>
+              <tr>
+                <td><code>apple|orange</code></td>
+                <td data-i18n="helpRegexOr">Contains either 'apple' or 'orange'</td>
+                <td>I like apple, orange juice</td>
+              </tr>
+              <tr>
+                <td><code>w{3,}</code></td>
+                <td data-i18n="helpRegexRepeat">Contains 3 or more consecutive 'w's</td>
+                <td>www, wwww, hello wwww</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     <script src="options.js"></script>
