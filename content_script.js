@@ -12,6 +12,19 @@ const elName = Object.freeze({
   }
 });
 
+const prepareRules = (rulesData) => {
+  return rulesData.map(rule => {
+    if (rule.type === "regexp" && rule.text) {
+      try {
+        rule.compiledRegexp = new RegExp(rule.text);
+      } catch (e) {
+        console.error("Invalid regular expression:", rule.text, e);
+      }
+    }
+    return rule;
+  });
+};
+
 const filter = nodes => {
   nodes.forEach(node => {
     const message = ((node.querySelector("#message") || []).textContent || "");
@@ -24,8 +37,7 @@ const filter = nodes => {
         case "equals":
           return message === word.text;
         case "regexp":
-          const regexp = new RegExp(word.text);
-          return regexp.test(message);
+          return word.compiledRegexp ? word.compiledRegexp.test(message) : false;
         default:
           return false;
       }
@@ -117,7 +129,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
       break;
 
     case "rules":
-      rules = changes.rules.newValue;
+      rules = prepareRules(changes.rules.newValue);
       if (enabled) {
         filterAll();
       }
@@ -130,7 +142,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   enabled = { "on": true, "off": false }[power || "on"];
 
   const { rules: loadedRules } = await chrome.storage.local.get("rules");
-  rules = loadedRules || [];
+  rules = prepareRules(loadedRules || []);
 
   init();
 })();
