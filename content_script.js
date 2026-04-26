@@ -75,7 +75,7 @@ const init = () => {
 
 const rootObserver = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
-    const chatListNode = [...mutation.addedNodes].filter(node => {
+    const chatListNode = [...mutation.addedNodes].find(node => {
       return node.nodeType === Node.ELEMENT_NODE && node.id === "chat";
     });
     if (chatListNode) {
@@ -126,10 +126,11 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 });
 
 (async () => {
-  const power = await chrome.storage.local.get("power").power;
+  const { power } = await chrome.storage.local.get("power");
   enabled = { "on": true, "off": false }[power || "on"];
 
-  rules = (await chrome.storage.local.get("rules")).rules;
+  const { rules: loadedRules } = await chrome.storage.local.get("rules");
+  rules = loadedRules || [];
 
   init();
 })();
