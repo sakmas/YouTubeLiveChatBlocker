@@ -108,22 +108,14 @@ document.querySelector(".input-rule-text").addEventListener("keypress", event =>
   }
 });
 
-chrome.storage.local.get("power", result => {
-  const power = result.power || "on";
+(async () => {
+  const { power, rules } = await chrome.storage.local.get(["power", "rules"]);
+  
+  const currentPower = power || "on";
   const powerSwitch = document.querySelector(".vc-switch-input");
+  powerSwitch.checked = currentPower === "on";
 
-  switch (power) {
-    case "on":
-      powerSwitch.checked = true;
-      break;
-    case "off":
-      powerSwitch.checked = false;
-      break;
+  if (rules && rules.length !== 0) {
+    rules.sort((a, b) => a.id - b.id).forEach((rule) => createRuleRow(rule.id, rule.type, rule.text, rule.active !== false));
   }
-});
-
-chrome.storage.local.get("rules", result => {
-  if (result.rules && result.rules.length !== 0) {
-    result.rules.sort((a, b) => a.id - b.id).forEach((rule) => createRuleRow(rule.id, rule.type, rule.text, rule.active !== false));
-  }
-});
+})();

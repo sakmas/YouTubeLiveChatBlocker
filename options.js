@@ -20,23 +20,22 @@ const showMessage = (msg, isSuccess = true) => {
   }, 3000);
 };
 
-exportBtn.addEventListener("click", () => {
-  chrome.storage.local.get("rules", result => {
-    const rules = result.rules || [];
-    const jsonString = JSON.stringify({ rules }, null, 2);
-    const blob = new Blob([jsonString], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `ytlcb_rules_${new Date().getTime()}.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    showMessage(chrome.i18n.getMessage("msgExportSuccess"));
-  });
+exportBtn.addEventListener("click", async () => {
+  const { rules: loadedRules } = await chrome.storage.local.get("rules");
+  const rules = loadedRules || [];
+  const jsonString = JSON.stringify({ rules }, null, 2);
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `ytlcb_rules_${new Date().getTime()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  
+  showMessage(chrome.i18n.getMessage("msgExportSuccess"));
 });
 
 importBtn.addEventListener("click", () => {
