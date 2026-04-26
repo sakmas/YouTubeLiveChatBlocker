@@ -34,9 +34,6 @@
   "helpRegexTableExample": { "message": "ブロックされる例" },
   "helpRegexEndsWith": { "message": "指定した言葉で終わるメッセージ" },
   "helpRegexStartsWith": { "message": "指定した言葉で始まるメッセージ" },
-  "helpRegexOneCharPattern": { "message": "^草$$" },
-  "helpRegexOneChar": { "message": "「草」や「w」など、特定の1文字だけのメッセージ" },
-  "helpRegexOneCharExample": { "message": "草" },
   "helpRegexOr": { "message": "「apple」または「orange」を含むメッセージ" },
   "helpRegexRepeat": { "message": "「w」が3回以上連続するメッセージ" }
 }

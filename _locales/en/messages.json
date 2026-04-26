@@ -34,9 +34,6 @@
   "helpRegexTableExample": { "message": "Example Matches" },
   "helpRegexEndsWith": { "message": "Matches messages ending with 'word'" },
   "helpRegexStartsWith": { "message": "Matches messages starting with 'word'" },
-  "helpRegexOneCharPattern": { "message": "^a$$" },
-  "helpRegexOneChar": { "message": "Exactly the specific character 'a'" },
-  "helpRegexOneCharExample": { "message": "a" },
   "helpRegexOr": { "message": "Contains either 'apple' or 'orange'" },
   "helpRegexRepeat": { "message": "Contains 3 or more consecutive 'w's" }
 }
